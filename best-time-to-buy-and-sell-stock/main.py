@@ -1,11 +1,11 @@
 prices1 = [7, 1, 5, 3, 6, 4]  # 5
 prices2 = [2, 4, 1]  # 2
 
-# The brutforce algorithm
-
 
 class Solution(object):
-    def maxProfit(self, prices):
+
+    # The brutforce algorithm
+    def maxProfitBF(self, prices):
         highest = 0
 
         for i in range(len(prices)):
@@ -19,7 +19,17 @@ class Solution(object):
 
         return highest
 
+    def maxProfitKadane(self, prices):
+        profit = 0
+        buy = prices[0]
+
+        for price in prices:
+            buy = min(buy, price)
+            profit = max(profit, price - buy)
+
+        return profit
+
 
 sol = Solution()
-print(sol.maxProfit(prices1))
-print(sol.maxProfit(prices2))
+print(sol.maxProfitKadane(prices1))
+print(sol.maxProfitKadane(prices2))
